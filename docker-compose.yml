@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  nginx:
+    image: nginx:alpine
+  stunnel:
+    image: adohkan/stunnel
+    environment:
+      - STUNNEL_CONNECT=nginx:80
+    ports:
+      - 8443:8443
+    depends_on:
+      - nginx
