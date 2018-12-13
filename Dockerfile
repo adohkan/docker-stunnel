@@ -9,5 +9,6 @@ RUN apk add --update --no-cache tini stunnel \
 COPY certs /etc/stunnel/certs
 COPY entrypoint.sh /entrypoint.sh
 
-USER stunnel
+# uid=100(stunnel) # use numerical value so it is compatible with 'runAsNonRoot' security context
+USER 100
 ENTRYPOINT ["/sbin/tini", "--", "/entrypoint.sh"]
